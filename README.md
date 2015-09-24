@@ -5,4 +5,6 @@ I have been using https://github.com/songz/cordova-plugin-opentok for my cordova
 
 So, I have just duplicate the code and added new SDKs.
 
+Installation https://github.com/prabinyovan/cordova-plugin-opentok-v2.6.0
+
 For instruction on usage, visit https://github.com/songz/cordova-plugin-opentok
