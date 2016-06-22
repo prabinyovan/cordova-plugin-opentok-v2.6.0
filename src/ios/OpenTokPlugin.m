@@ -399,7 +399,9 @@
     [self triggerJSEvent: @"sessionEvents" withType: @"sessionDisconnected" withData: eventData];
 }
 -(void) session:(OTSession *)session receivedSignalType:(NSString *)type fromConnection:(OTConnection *)connection withString:(NSString *)string{
-    
+    if(!string){
+        string = @"";
+    }
     NSLog(@"iOS Session Received signal from Connection: %@ with id %@", connection, [connection connectionId]);
     NSMutableDictionary* data = [[NSMutableDictionary alloc] init];
     [data setObject: type forKey: @"type"];
@@ -464,6 +466,9 @@
     [streamData setObject: [NSNumber numberWithBool: stream.hasVideo] forKey: @"hasVideo" ];
     [streamData setObject: stream.name forKey: @"name" ];
     [streamData setObject: stream.streamId forKey: @"streamId" ];
+    [streamData setObject: [NSNumber numberWithInt: stream.videoType] forKey: @"videoType" ];
+    [streamData setObject: [NSNumber numberWithInt: stream.videoDimensions.height] forKey: @"videoHeight" ];
+    [streamData setObject: [NSNumber numberWithInt: stream.videoDimensions.width] forKey: @"videowidth" ];
     return streamData;
 }
 - (void)triggerJSEvent:(NSString*)event withType:(NSString*)type withData:(NSMutableDictionary*) data{
