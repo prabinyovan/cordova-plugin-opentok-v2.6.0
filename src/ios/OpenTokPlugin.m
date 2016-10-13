@@ -230,7 +230,14 @@
     if ([[command.arguments objectAtIndex:7] isEqualToString:@"false"]) {
         [sub setSubscribeToVideo: NO];
     }
-    [subscriberDictionary setObject:sub forKey:myStream.streamId];
+    @try {
+        [subscriberDictionary setObject:sub forKey:myStream.streamId];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception.reason);
+    }
+    @finally {
+    }
     
     [sub.view setFrame:CGRectMake(left, top, width, height)];
     if (zIndex>0) {
